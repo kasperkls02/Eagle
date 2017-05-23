@@ -1,0 +1,16 @@
+-- Linux Graphics Driver Issues
+We are aware of a QT related bug in certain legacy AMD graphics drivers. If EAGLE crashes when starting the application, please try setting the "QT_OPENGL" environment variable to "software" to enable software OpenGL rendering.
+export QT_OPENGL=software
+./eagle
+
+-- OpenSUSE/SUSE Linux
+We are aware of a sporadic issue with OpenSSL on OpenSUSE/SUSE linux.
+If you encounter a segmentation fault when starting EAGLE (./eagle), please try running the following commands in a terminal in the EAGLE directory:
+
+sudo zypper install libopenssl-devel
+cp /lib64/libssl.so.1.0.0 lib/libssl.so.10
+cp /lib64/libcrypto.so.1.0.0 lib/libcrypto.so.10
+
+-- OpenSUSE/SUSE Linux
+If you encounter a 'Check failed: base::i18n::InitializeICU() error when launching EAGLE, please try copying the icudtl.dat file from the libexec directory to the EAGLE directory:
+cp libexec/icudtl.dat .
